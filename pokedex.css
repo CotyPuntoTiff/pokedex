@@ -5,7 +5,7 @@
 
 @media all {
     #listaPokemon {
-        background-image: url(../pokedex/listapokemon-background.jpg);
+        background-image: url(listapokemon-background.jpg);
         border-style: groove;
         border-width: 7px;
     }
