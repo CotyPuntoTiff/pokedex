@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="pokedex.css">
+    <script>
+        $(document).ready(function() {
+            //MOSTRAR LOS 120 POKEMON
+            for (let i = 1; i < 1090; i++) {
+                $('#listaPokemon').append('<img id="' + i + '" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + i + '.png" alt="">');
+            }
+
+            $('img').click(function() { //"Al hacer click en la imagen, muestra el numero de pokemon en consola.
+                let numeroPokemon = this.id; //Inserta el id en la variable numeroPokemon
+
+                $.get('https://pokeapi.co/api/v2/pokemon/' + numeroPokemon + '/', function(respuesta) {
+
+                    let imagen = respuesta.sprites.front_default;
+                    let nombre = respuesta.name;
+                    let altura = respuesta.height;
+                    let peso = respuesta.weight;
+                    let tipo1 = respuesta.types[0].type.name;
+                    // let tipo2 = respuesta.types[1].type.name;
+                    let numero = respuesta.order;
+
+                    $('#picture').html('<img src="' + imagen + '" alt="' + nombre + '">');
+                    $('#nombre').html('<strong>Nombre: </strong><span>' + nombre + '</span>');
+                    $('#altura').html('<strong>Altura: </strong><span>' + altura + '</span>');
+                    $('#peso').html('<strong>Peso: </strong><span>' + peso + '</span>');
+                    $('#tipo').html('<strong>Tipo: </strong><span>' + tipo1 + '</span>');
+                    $('#numero').html('<strong>Numero: </strong><span>' + numero + '</span>');
+                }, 'json');
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- muestra la pokedex -->
+            <div id="pokedex" class="col my-5">
+                <div class="fixed">
+                    <div class="intrucciones">
+                        <p class="text-center"><strong>Instrucciones</strong></p>
+                        <p>Haz clic en un pokemon para ver los datos en la Pokedex</p>
+                    </div>
+                    <div id="left">
+                        <div id="logo"></div>
+                        <div id="bg_curve1_left"></div>
+                        <div id="bg_curve2_left"></div>
+                        <div id="curve1_left">
+                            <div id="buttonGlass">
+                                <div id="reflect"> </div>
+                            </div>
+                            <div id="miniButtonGlass1"></div>
+                            <div id="miniButtonGlass2"></div>
+                            <div id="miniButtonGlass3"></div>
+                        </div>
+                        <div id="curve2_left">
+                            <div id="junction">
+                                <div id="junction1"></div>
+                                <div id="junction2"></div>
+                            </div>
+                        </div>
+                        <div id="screen">
+                            <div id="topPicture">
+                                <div id="buttontopPicture1"></div>
+                                <div id="buttontopPicture2"></div>
+                            </div>
+                            <div id="picture">
+                            </div>
+                            <div id="buttonbottomPicture"></div>
+                            <div id="speakers">
+                                <div class="sp"></div>
+                                <div class="sp"></div>
+                                <div class="sp"></div>
+                                <div class="sp"></div>
+                            </div>
+                        </div>
+                        <div id="bigbluebutton"></div>
+                        <div id="barbutton1"></div>
+                        <div id="barbutton2"></div>
+                        <div id="cross">
+                            <div id="leftcross">
+                                <div id="leftT"></div>
+                            </div>
+                            <div id="topcross">
+                                <div id="upT"></div>
+                            </div>
+                            <div id="rightcross">
+                                <div id="rightT"></div>
+                            </div>
+                            <div id="midcross">
+                                <div id="midCircle"></div>
+                            </div>
+                            <div id="botcross">
+                                <div id="downT"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="right">
+                        <div id="stats">
+                            <strong id="numero"></strong><br/>
+                            <strong id="nombre"></strong><br/>
+                            <strong id="tipo"></strong><br/>
+                            <strong id="altura"></strong><br/>
+                            <strong id="peso"></strong><br/>
+                        </div>
+                        <div id="blueButtons1">
+                            <div class="blueButton"></div>
+                            <div class="blueButton"></div>
+                            <div class="blueButton"></div>
+                            <div class="blueButton"></div>
+                            <div class="blueButton"></div>
+                        </div>
+                        <div id="blueButtons2">
+                            <div class="blueButton"></div>
+                            <div class="blueButton"></div>
+                            <div class="blueButton"></div>
+                            <div class="blueButton"></div>
+                            <div class="blueButton"></div>
+                        </div>
+                        <div id="miniButtonGlass4"></div>
+                        <div id="miniButtonGlass5"></div>
+                        <div id="barbutton3"></div>
+                        <div id="barbutton4"></div>
+                        <div id="yellowBox1"></div>
+                        <div id="yellowBox2"></div>
+                        <div id="bg_curve1_right"></div>
+                        <div id="bg_curve2_right"></div>
+                        <div id="curve1_right"></div>
+                        <div id="curve2_right"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- muestra la lista -->
+            <div class="col scrollit">
+                <div class="text-center my-5">
+                    <img src="pokemon.png" alt="logo-pokemon">
+                    <br>
+                </div>
+                <div id="listaPokemon"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+</html>
